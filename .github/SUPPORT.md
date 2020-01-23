@@ -6,3 +6,4 @@ Where can you get support and help?
 * Find [help and other users](https://www.joomla.org/about-joomla/create-and-share.html).
 * Post questions at [our forums](https://forum.joomla.org).
 * [Joomla Resources Directory](https://resources.joomla.org) (JRD).
+* [Joomla Main Page](https://joomla.org)
