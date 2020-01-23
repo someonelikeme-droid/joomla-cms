@@ -1,12 +1,4 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
@@ -14,7 +6,6 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
 Factory::getLanguage()->load("com_actionlogs", JPATH_ADMINISTRATOR, null, false, true);
-
 $messages = $displayData['messages'];
 $showIpColumn = $displayData['showIpColumn'];
 ?>

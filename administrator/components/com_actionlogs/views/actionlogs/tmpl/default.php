@@ -1,12 +1,4 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
@@ -15,24 +7,19 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 
-/** @var ActionlogsViewActionlogs $this */
-
 JLoader::register('ActionlogsHelper', JPATH_ADMINISTRATOR . '/components/com_actionlogs/helpers/actionlogs.php');
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
 HTMLHelper::_('formbehavior.chosen', 'select');
-
 $listOrder  = $this->escape($this->state->get('list.ordering'));
 $listDirn   = $this->escape($this->state->get('list.direction'));
-
 Factory::getDocument()->addScriptDeclaration('
 	Joomla.submitbutton = function(task)
 	{
 		if (task == "actionlogs.exportLogs")
 		{
 			Joomla.submitform(task, document.getElementById("exportForm"));
-			
 			return;
 		}
 
@@ -40,17 +27,13 @@ Factory::getDocument()->addScriptDeclaration('
 		{
 			// Get id of selected action logs item and pass it to export form hidden input
 			var cids = [];
-
 			jQuery("input[name=\'cid[]\']:checked").each(function() {
 					cids.push(jQuery(this).val());
 			});
-
 			document.exportForm.cids.value = cids.join(",");
 			Joomla.submitform(task, document.getElementById("exportForm"));
-
 			return;
 		}
-
 		Joomla.submitform(task);
 	};
 ');

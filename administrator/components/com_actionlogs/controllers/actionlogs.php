@@ -1,12 +1,4 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Component\ComponentHelper;
@@ -29,13 +21,11 @@ class ActionlogsControllerActionlogs extends JControllerAdmin
 	 * Constructor.
 	 *
 	 * @param   array  $config  An optional associative array of configuration settings.
-	 *
 	 * @since   3.9.0
 	 */
 	public function __construct(array $config = array())
 	{
 		parent::__construct($config);
-
 		$this->registerTask('exportSelectedLogs', 'exportLogs');
 	}
 
@@ -45,9 +35,7 @@ class ActionlogsControllerActionlogs extends JControllerAdmin
 	 * @param   string  $name    The model name. Optional.
 	 * @param   string  $prefix  The class prefix. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
-	 *
 	 * @return  object  The model.
-	 *
 	 * @since   3.9.0
 	 */
 	public function getModel($name = 'Actionlogs', $prefix = 'ActionlogsModel', $config = array('ignore_request' => true))
@@ -60,16 +48,13 @@ class ActionlogsControllerActionlogs extends JControllerAdmin
 	 * Method to export logs
 	 *
 	 * @return  void
-	 *
 	 * @since   3.9.0
 	 */
 	public function exportLogs()
 	{
 		// Check for request forgeries.
 		$this->checkToken();
-
 		$task = $this->getTask();
-
 		$pks = array();
 
 		if ($task == 'exportSelectedLogs')
@@ -104,9 +89,7 @@ class ActionlogsControllerActionlogs extends JControllerAdmin
 
 			$date     = new Date('now', new DateTimeZone('UTC'));
 			$filename = 'logs_' . $date->format('Y-m-d_His_T');
-
 			$csvDelimiter = ComponentHelper::getComponent('com_actionlogs')->getParams()->get('csv_delimiter', ',');
-
 			$app = Factory::getApplication();
 			$app->setHeader('Content-Type', 'application/csv', true)
 				->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '.csv"', true)
@@ -135,14 +118,12 @@ class ActionlogsControllerActionlogs extends JControllerAdmin
 	 * Clean out the logs
 	 *
 	 * @return  void
-	 *
 	 * @since   3.9.0
 	 */
 	public function purge()
 	{
 		// Check for request forgeries.
 		$this->checkToken();
-
 		$model = $this->getModel();
 
 		if ($model->purge())
@@ -153,7 +134,6 @@ class ActionlogsControllerActionlogs extends JControllerAdmin
 		{
 			$message = Text::_('COM_ACTIONLOGS_PURGE_FAIL');
 		}
-
 		$this->setRedirect(Route::_('index.php?option=com_actionlogs&view=actionlogs', false), $message);
 	}
 }

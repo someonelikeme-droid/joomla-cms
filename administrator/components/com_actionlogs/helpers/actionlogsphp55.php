@@ -1,26 +1,9 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Language\Text;
 
-/**
- * Actionlogs component helper for newer PHP versions.
- *
- * This file should only be included in environments running PHP 5.5 or newer and may potentially cause a parse error on older versions.
- *
- * @since       3.9.0
- * @deprecated  Will be inlined back into ActionlogsHelper when PHP 5.5 or newer is the minimum supported PHP version
- * @internal
- */
 class ActionlogsHelperPhp55
 {
 	/**
@@ -35,9 +18,7 @@ class ActionlogsHelperPhp55
 	 * Method to convert logs objects array to a Generator for use with a CSV export
 	 *
 	 * @param   array|Traversable  $data  The logs data objects to be exported
-	 *
 	 * @return  Generator
-	 *
 	 * @since   3.9.0
 	 * @throws  InvalidArgumentException
 	 */
@@ -53,18 +34,13 @@ class ActionlogsHelperPhp55
 				)
 			);
 		}
-
 		$disabledText = Text::_('COM_ACTIONLOGS_DISABLED');
-
-		// Header row
 		yield array('Id', 'Message', 'Date', 'Extension', 'User', 'Ip');
 
 		foreach ($data as $log)
 		{
 			$extension = strtok($log->extension, '.');
-
 			ActionlogsHelper::loadTranslationFiles($extension);
-
 			yield array(
 				'id'         => $log->id,
 				'message'    => self::escapeCsvFormula(strip_tags(ActionlogsHelper::getHumanReadableLogMessage($log, false))),
@@ -80,9 +56,7 @@ class ActionlogsHelperPhp55
 	 * Escapes potential characters that start a formula in a CSV value to prevent injection attacks
 	 *
 	 * @param   mixed  $value  csv field value
-	 *
 	 * @return  mixed
-	 *
 	 * @since   3.9.7
 	 */
 	protected static function escapeCsvFormula($value)
@@ -96,7 +70,6 @@ class ActionlogsHelperPhp55
 		{
 			$value = ' ' . $value;
 		}
-
 		return $value;
 	}
 }

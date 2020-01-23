@@ -1,12 +1,4 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Component\ComponentHelper;
@@ -19,7 +11,6 @@ JLoader::register('ActionlogsHelper', JPATH_ADMINISTRATOR . '/components/com_act
 
 /**
  * Methods supporting a list of Actionlog records.
- *
  * @since  3.9.0
  */
 class ActionlogsModelActionlog extends JModelLegacy
@@ -27,14 +18,11 @@ class ActionlogsModelActionlog extends JModelLegacy
 	/**
 	 * Function to add logs to the database
 	 * This method adds a record to #__action_logs contains (message_language_key, message, date, context, user)
-	 *
 	 * @param   array    $messages            The contents of the messages to be logged
 	 * @param   string   $messageLanguageKey  The language key of the message
 	 * @param   string   $context             The context of the content passed to the plugin
 	 * @param   integer  $userId              ID of user perform the action, usually ID of current logged in user
-	 *
 	 * @return  void
-	 *
 	 * @since   3.9.0
 	 */
 	public function addLog($messages, $messageLanguageKey, $context, $userId = null)
@@ -81,20 +69,15 @@ class ActionlogsModelActionlog extends JModelLegacy
 				// Ignore it
 			}
 		}
-
-		// Send notification email to users who choose to be notified about the action logs
-		$this->sendNotificationEmails($loggedMessages, $user->name, $context);
+				$this->sendNotificationEmails($loggedMessages, $user->name, $context);
 	}
 
 	/**
 	 * Send notification emails about the action log
-	 *
 	 * @param   array   $messages  The logged messages
 	 * @param   string  $username  The username
 	 * @param   string  $context   The Context
-	 *
 	 * @return  void
-	 *
 	 * @since   3.9.0
 	 */
 	protected function sendNotificationEmails($messages, $username, $context)
@@ -103,7 +86,6 @@ class ActionlogsModelActionlog extends JModelLegacy
 		$query        = $db->getQuery(true);
 		$params       = ComponentHelper::getParams('com_actionlogs');
 		$showIpColumn = (bool) $params->get('ip_logging', 0);
-
 		$query
 			->select($db->quoteName(array('u.email', 'l.extensions')))
 			->from($db->quoteName('#__users', 'u'))
@@ -112,7 +94,6 @@ class ActionlogsModelActionlog extends JModelLegacy
 				$db->quoteName('#__action_logs_users', 'l') . ' ON ( ' . $db->quoteName('l.notify') . ' = 1 AND '
 				. $db->quoteName('l.user_id') . ' = ' . $db->quoteName('u.id') . ')'
 			);
-
 		$db->setQuery($query);
 
 		try
@@ -158,7 +139,6 @@ class ActionlogsModelActionlog extends JModelLegacy
 			'username'     => $username,
 			'showIpColumn' => $showIpColumn,
 		);
-
 		$body   = $layout->render($displayData);
 		$mailer = Factory::getMailer();
 		$mailer->addRecipient($recipients);

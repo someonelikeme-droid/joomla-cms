@@ -1,24 +1,14 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('JPATH_BASE') or die;
 
 /**
  * Information field.
- *
  * @since  3.9.2
  */
 class JFormFieldPluginInfo extends JFormField
 {
 	/**
 	 * The form field type.
-	 *
 	 * @var    string
 	 * @since  3.9.2
 	 */
@@ -26,9 +16,7 @@ class JFormFieldPluginInfo extends JFormField
 
 	/**
 	 * Method to get the field input markup.
-	 *
 	 * @return  string	The field input markup.
-	 *
 	 * @since   3.9.2
 	 */
 	protected function getInput()

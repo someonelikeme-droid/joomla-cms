@@ -1,12 +1,4 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_actionlogs
- *
- * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
@@ -16,14 +8,12 @@ FormHelper::loadFieldClass('predefinedlist');
 
 /**
  * Field to show a list of range dates to sort with
- *
  * @since  3.9.0
  */
 class JFormFieldLogsDateRange extends JFormFieldPredefinedList
 {
 	/**
 	 * The form field type.
-	 *
 	 * @var     string
 	 * @since   3.9.0
 	 */
@@ -31,7 +21,6 @@ class JFormFieldLogsDateRange extends JFormFieldPredefinedList
 
 	/**
 	 * Available options
-	 *
 	 * @var    array
 	 * @since  3.9.0
 	 */
@@ -46,16 +35,12 @@ class JFormFieldLogsDateRange extends JFormFieldPredefinedList
 
 	/**
 	 * Method to instantiate the form field object.
-	 *
 	 * @param   JForm  $form  The form to attach to the form field object.
-	 *
 	 * @since  3.9.0
 	 */
 	public function __construct($form = null)
 	{
 		parent::__construct($form);
-
-		// Load the required language
 		$lang = Factory::getLanguage();
 		$lang->load('com_actionlogs', JPATH_ADMINISTRATOR);
 	}
